@@ -1,0 +1,254 @@
+@import "tailwindcss";
+
+:root {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: Manrope, system-ui, sans-serif;
+  --ink: #142033;
+  --ink-soft: #4a5563;
+  --teal: #1e4d4a;
+  --brass: #b8956c;
+  --line: rgba(20, 32, 51, 0.12);
+  --surface: #f3f6f8;
+  --bg-1: #e8eef2;
+  --bg-2: #d5dde6;
+}
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(30, 77, 74, 0.12), transparent 45%),
+    radial-gradient(ellipse at 90% 20%, rgba(184, 149, 108, 0.16), transparent 40%),
+    linear-gradient(165deg, var(--bg-1), var(--bg-2) 55%, #cfd8e2);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.phone-frame {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.phone-screen {
+  position: relative;
+  width: min(100%, 420px);
+  height: min(100dvh - 2rem, 820px);
+  overflow: hidden;
+  border-radius: 2rem;
+  border: 1px solid rgba(20, 32, 51, 0.1);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), var(--surface));
+  box-shadow:
+    0 24px 60px rgba(20, 32, 51, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-ghost {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    opacity 160ms ease;
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.option-card:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled,
+.btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  width: 100%;
+  border-radius: 999px;
+  padding: 0.95rem 1.25rem;
+  background: var(--teal);
+  color: white;
+  font-weight: 600;
+}
+
+.btn-secondary {
+  width: 100%;
+  border-radius: 999px;
+  padding: 0.9rem 1.25rem;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  font-weight: 500;
+}
+
+.btn-ghost {
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  background: transparent;
+  color: var(--ink-soft);
+}
+
+.option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  width: 100%;
+  border-radius: 1.15rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.55);
+  padding: 1rem 1.1rem;
+  text-align: left;
+}
+
+.option-card-active {
+  border-color: rgba(30, 77, 74, 0.45);
+  background: rgba(30, 77, 74, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(30, 77, 74, 0.15);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(24px);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-30%);
+  }
+  100% {
+    transform: translateX(30%);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 480ms ease both;
+}
+
+.animate-fade-up-delay {
+  animation: fade-up 560ms ease 120ms both;
+}
+
+.animate-rise {
+  animation: rise 700ms ease both;
+}
+
+.animate-fade-in {
+  animation: fade-in 220ms ease both;
+}
+
+.animate-sheet-up {
+  animation: sheet-up 280ms ease both;
+}
+
+.animate-shimmer {
+  animation: shimmer 4.5s ease-in-out infinite alternate;
+}
+
+.animate-breathe {
+  animation: breathe 2.4s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+
+@media (max-width: 480px) {
+  .phone-frame {
+    padding: 0;
+  }
+
+  .phone-screen {
+    width: 100%;
+    height: 100dvh;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+}
